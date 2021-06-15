@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Circus Tabs Example</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+    <nav class="main-navigation absolute-navigation">
+      <ul>
+        <li>
+          <a href="./index.html">Go Back</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- <button type="button" target_id="tab" class="debug_btn id_button" onclick="move(this)" name="button">TEST</button> -->
+
+    <div id="splash-wrapper" class="container-fluid">
+
+      <div class="tab" index="0" id="tab_0" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+        <h1 class="title"> C </h1>
+      </div>
+      <div class="tab" index="1" id="tab_1" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+        <h1 class="title"> I </h1>
+      </div>
+      <div class="tab" index="2" id="tab_2" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+        <h1 class="title"> R </h1>
+      </div>
+      <div class="tab" index="3" id="tab_3" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+        <h1 class="title"> C </h1>
+      </div>
+      <div class="tab" index="4" id="tab_4" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+        <h1 class="title"> U </h1>
+      </div>
+      <div class="tab" index="5" id="tab_5" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+        <h1 class="title"> S </h1>
+      </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+      function off(object){
+          object.classList.remove('active');
+          scaleDown(object.id);
+      }
+      function on(object){
+          object.classList.add('active');
+          scaleUp(object.id);
+      }
+
+      function scaleDown(target){
+        target = "#"+target;
+        gsap.to(target,{
+          duration:0.6,
+          ease:"pow3.out",
+          width: 100
+          // xPercent:-10
+        })
+      }
+
+      function scaleUp(target){
+        target = "#"+target;
+        gsap.to(target,{
+          duration:0.6,
+          ease:"pow3.out",
+          // xPercent:10,
+          width: window.innerWidth
+        })
+      }
+
+
+      function move(object){
+        gsap.to('#'+object.getAttribute('target_id'), {
+          duration:3,
+          x:-300,
+        })
+      }
+    </script>
+
+  </body>
+</html>

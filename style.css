@@ -39,3 +39,24 @@
   padding: 1em;
   margin: 1em;
 }
+
+
+.absolute-navigation{
+  position: absolute;
+  bottom: 0;
+  background-color: yellow;
+  margin: 1em;
+}
+
+.absolute-navigation ul{
+  list-style: none;
+  padding: 1em;
+  margin: 1em;
+}
+.absolute-navigation a:hover{
+  color:blue;
+}
+.absolute-navigation a{
+  color:blue;
+  font-weight: 600;
+}
