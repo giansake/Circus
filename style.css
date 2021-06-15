@@ -1,0 +1,41 @@
+.title{
+  width: 100%;
+  text-align: right;
+  /* position: absolute; */
+}
+
+#splash-wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.tab{
+    width: 100px;
+    height: 100%;
+    border: 2px solid blue;
+}
+
+.tab.active{
+  background-color: cyan;
+}
+
+
+#id_button{
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+}
+
+
+.debug_btn{
+  position: absolute;
+  bottom: 0;
+  background-color: cyan;
+  padding: 1em;
+  margin: 1em;
+}
