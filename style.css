@@ -144,7 +144,7 @@ html {
 
 
 .unactive_RGT{
-  background-color: orange;
+  border: 2px solid orange;
 }
 .unactive_LFT{
   /* background-color: green; */
