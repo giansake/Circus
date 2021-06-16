@@ -6,11 +6,13 @@
     <title>Circus Tabs Example</title>
 
     <link rel="stylesheet" href="./style.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
 
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="./locomotive-scroll.min.js"></script>
 
     <nav class="main-navigation absolute-navigation">
       <ul>
@@ -21,57 +23,312 @@
     </nav>
     <!-- <button type="button" target_id="tab" class="debug_btn id_button" onclick="move(this)" name="button">TEST</button> -->
 
-    <div id="splash-wrapper" class="container-fluid">
+    <div id="splash-wrapper" data-scroll-container class="container-fluid">
 
-      <div class="tab" index="0" id="tab_0" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab" index="0" id="tab_0" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
         <h1 class="title"> C </h1>
+        <img src="./img/S.jpg" alt="">
+        <button class="tab_btn" target="tab_0"  target="tab_0" id="tab_btn_0" type="button" name="button" onclick="update_page(this)">
+          <h6>Production</h6>
+        </button>
       </div>
-      <div class="tab" index="1" id="tab_1" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab" index="1" id="tab_1" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
         <h1 class="title"> I </h1>
+        <button class="tab_btn" target="tab_1"  id="tab_btn_1" type="button" name="button" onclick="update_page(this)" >
+          <h6>Studios</h6>
+        </button>
       </div>
-      <div class="tab" index="2" id="tab_2" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab" index="2" id="tab_2" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
         <h1 class="title"> R </h1>
+        <button class="tab_btn" target="tab_2"  id="tab_btn_2" type="button" name="button" onclick="update_page(this)">
+          <h6>Works</h6>
+        </button>
       </div>
-      <div class="tab" index="3" id="tab_3" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab" index="3" id="tab_3" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
         <h1 class="title"> C </h1>
+        <button class="tab_btn" target="tab_3"  id="tab_btn_3" type="button" name="button" onclick="update_page(this)">
+          <h6>Catalogue</h6>
+        </button>
       </div>
-      <div class="tab" index="4" id="tab_4" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab" index="4" id="tab_4" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
         <h1 class="title"> U </h1>
+        <button class="tab_btn" target="tab_4"  id="tab_btn_4" type="button" name="button" onclick="update_page(this)">
+          <h6>Departments</h6>
+        </button>
       </div>
-      <div class="tab" index="5" id="tab_5" onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab" index="5" id="tab_5" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
         <h1 class="title"> S </h1>
+        <button class="tab_btn" target="tab_5"  id="tab_btn_5" type="button" name="button" onclick="update_page(this)">
+          <h6>About</h6>
+        </button>
       </div>
     </div>
 
 
 
     <script type="text/javascript">
+      var page_status = false;
+
+      function init_scroll(){
+        let scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true,
+            smartphone: { smooth: true },
+            direction: "vertical",
+            multiplier: 4.5
+        });
+      }
+
+      function check_positions(reset){
+        // console.log(document.querySelector(".tab"));
+        let tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
+        if (!reset) {
+
+          tabs.forEach((item, i) => {
+            var rect = item.getBoundingClientRect();
+            if (rect.x > window.innerWidth/2) {
+              // right
+              if (!item.classList.contains('active')) {
+                  item.classList.add('unactive_RGT');
+
+              }
+
+            }else{
+              // left
+              if (!item.classList.contains('active')) {
+                item.classList.add('unactive_LFT');
+
+              }
+            }
+          });
+
+        }else{
+
+
+          tabs.forEach((item, i) => {
+            item.classList.remove('unactive_RGT');
+            item.classList.remove('unactive_LFT');
+          });
+
+        }
+
+
+      }
+
+      function tabs_outro(){
+        gsap.to('tabunactive_RGT',{
+          duration:1,
+          x: 1000
+        });
+        gsap.to('tab.unactive_LFT',{
+          duration:1,
+          x: -10000
+        });
+        console.log('[unactive tabs] OUTRO');
+      }
+
+
+
+
+
+      function update_page(object){
+
+        console.log('[page] OPENED');
+        // console.log(object.getAttribute('target'));
+        let active_tab_id = object.getAttribute('target');
+        let tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
+        var increment = 0;
+        tabs.forEach((item, i) => {
+          var rect = item.getBoundingClientRect();
+
+          if(item.id != active_tab_id){
+            // console.log(item.clientWidth);
+
+            // item.classList.add('debug_active');
+            if (document.getElementById(item.id).classList.contains('unactive_LFT')) {
+              console.log(item.id);
+              // gsap.to('#'+item.id,{
+              //   duration:1,
+              //   x:1000
+              // })
+
+              // ISSUE
+
+            }else if (document.getElementById(item.id).classList.contains('unactive_RGT')) {
+              gsap.to('#'+item.id,{
+                duration:1+increment,
+                delay:0.1,
+                x:400,
+              });
+              // console.log(increment);
+              increment += 0.2;
+            }
+
+
+
+          }else{
+            init_scroll();
+
+
+
+            var wrapper = document.getElementById('splash-wrapper');
+            wrapper.innerHTML += '<div id="ghost-wrapper"></div>';
+
+            var ghost_wrapper = document.getElementById('ghost-wrapper');
+
+            // console.log(document.getElementById(active_tab_id).cloneNode(true));
+
+            ghost_wrapper.style.left = rect.left + 'px';
+            ghost_wrapper.style.top = rect.top + 'px';
+            ghost_wrapper.style.width = rect.width + 'px';
+            ghost_wrapper.style.height = rect.height + 'px';
+
+
+            // document.getElementById(active_tab_id).style.left = rect.left + 'px';
+            document.getElementById(active_tab_id).style.top = rect.top + 'px';
+
+            document.getElementById(active_tab_id).style.height = rect.height + 'px';
+
+            var my_node = document.getElementById(active_tab_id);
+            var clone_node = my_node.cloneNode(true);
+            clone_node.style.width = rect.width + 'px';
+            clone_node.removeAttribute('onmouseenter');
+            clone_node.removeAttribute('onmouseleave');
+            clone_node.removeAttribute('ontouchstart');
+            clone_node.removeAttribute('ontouchend');
+            clone_node.id = 'circus_page';
+            clone_node.classList.remove('active');
+            // clone_node.classList.remove('tab');
+
+            ghost_wrapper.append(clone_node.cloneNode(true));
+            clone_node.style.width = "100%";
+            // my_node.remove();
+
+            // tabs_outro();
+            my_node.innerHTML = "";
+            my_node.classList.remove('tab');
+            gsap.to('#circus_page',{ duration:1.3, width:window.innerWidth});
+
+            gsap.to('#ghost-wrapper', {
+              duration:0.5,
+              // delay:0.2,
+              ease:"expo.out",
+              x: -rect.x,
+              width:window.innerWidth,
+              onComplete:function(){
+                // ghost_wrapper.style.width = "100vw";
+
+                // ghost_wrapper.style.minHeight = "200vh";
+                page_status = true;
+
+                // ghost_wrapper.append(document.getElementById(active_tab_id).cloneNode(true));
+              }
+            })
+          }
+          // gsap.to('#'+active_tab_id,{
+          //   duration:1,
+          //   width: window.innerWidth
+          //   // width:document.getElementById(active_tab_id).clientWidth+400
+          // });
+        });
+
+          // id = object.id.slice(-1);
+          // id = 'tab_'+id;
+          //
+          //
+          // Array.prototype.slice.call(document.getElementsByClassName('tab')).forEach((item, i) => {
+          //   if (item.id!=id) {
+          //
+          //     gsap.to('#'+item.id, {duration:1, scale:0, onComplete:function(){
+          //       document.getElementById(item.id).display = "none";
+          //       document.getElementById('splash-wrapper').display = "inline";
+          //       gsap.to('#'+id,{
+          //         duration:2,
+          //         width: window.outerWidth
+          //       });
+          //     }});
+          //   }
+          // });
+          //
+          //
+          // console.log(window.innerWidth)
+      }
+
+
+
       function off(object){
           object.classList.remove('active');
-          scaleDown(object.id);
+          if (!page_status) {
+            scaleDown(object.id);
+          }
       }
       function on(object){
           object.classList.add('active');
-          scaleUp(object.id);
+          if (!page_status) {
+              scaleUp(object.id);
+          }
+
       }
 
       function scaleDown(target){
+        last = target.slice(-1);
+        btn_id = "#tab_btn_"+last;
+        btn_title_id = "#tab_btn_"+last+">h6";
+
+        gsap.to(btn_title_id,{
+          duration:0.1,
+          opacity: 0,
+        });
+        gsap.to(btn_id,{
+          duration:0.4,
+          width: 50
+        });
+
+
         target = "#"+target;
         gsap.to(target,{
           duration:0.6,
           ease:"pow3.out",
-          width: 100
+          width: 100,
+          onComplete:function(){
+            check_positions(true);
+          }
           // xPercent:-10
-        })
+        });
+
       }
 
       function scaleUp(target){
-        target = "#"+target;
-        gsap.to(target,{
+        last = target.slice(-1);
+        btn_id = "#tab_btn_"+last;
+        btn_title_id = "#tab_btn_"+last+">h6";
+
+        gsap.to(btn_id,{
+          duration:0.3,
+          width: 120,
+          onComplete:function(){
+            gsap.to(btn_title_id,{
+              // delay:0.3,
+
+              duration:0.2,
+              opacity:1,
+            });
+          }
+        });
+
+
+        new_target = "#"+target;
+        gsap.to(new_target,{
           duration:0.6,
           ease:"pow3.out",
           // xPercent:10,
-          width: window.innerWidth
+          width: window.innerWidth,
+          onComplete:function(){
+            check_positions();
+            // console.log(document.getElementById(target).clientWidth);
+            // document.getElementById(target).style.width = document.getElementById(target).clientWidth+"px";
+            // document.getElementById(target).style.position = "absolute";
+          }
         })
       }
 
