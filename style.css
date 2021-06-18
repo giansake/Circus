@@ -256,3 +256,12 @@ html {
   height: 100%;
   overflow: hidden
 }
+
+
+
+
+@media only screen and (max-width: 768px){
+  .tab_image_wrapper > img{
+    display: none;
+  }
+}
