@@ -8,7 +8,17 @@ body{
   text-align: right;
   /* position: absolute; */
 }
+#splash-wrapper-review{
+  padding:0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
+    overflow: hidden;
+}
 #splash-wrapper{
     width: 100%;
     height: 100vh;
@@ -44,6 +54,21 @@ body{
     padding-bottom: 0.5em;
 }
 
+.tab_full{
+  width: 100%;
+  height: 100%;
+  border: 2px solid blue;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 0.5em;
+}
+
+
+
 .tab_btn{
   max-width: 80%;
   text-align: center;
@@ -65,7 +90,7 @@ body{
 }
 
 .tab.active{
-  /* background-color: cyan; */
+  background-color: cyan;
   opacity: 0.8
 }
 
@@ -92,6 +117,7 @@ body{
   /* background-color: yellow; */
   border: 2px solid yellow;
   margin: 1em;
+  z-index: 1
 }
 
 .absolute-navigation ul{
@@ -152,4 +178,44 @@ html {
 
 #circus_page{
   background-color: white;
+}
+
+
+.tab_header{
+  width: 100%;
+}
+.tab_full{
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.tab_image{
+  position: absolute;
+  z-index: -9
+}
+
+
+@font-face {
+    font-family: "Circus";
+    src: url('fonts/circus-regular.woff');
+}
+
+p.title{
+  font-family: "Circus";
+  /* font-size: 3rem */
+}
+
+
+.tab_footer{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: invert;
+  background-color: white;
+}
+
+p.tab_footer_text{
+  margin-bottom: 0;
 }
