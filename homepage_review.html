@@ -30,7 +30,7 @@
 
     <div id="splash-wrapper-review" data-scroll-container class="container-fluid">
 
-      <div class="tab_full" index="0" id="tab_0" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab_full" index="0" id="tab_0" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="touch(this)">
         <div class="tab_header">
             <p class="title"> C </p>
         </div>
@@ -44,7 +44,7 @@
 
 
       </div>
-      <div class="tab_full" index="1" id="tab_1" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab_full" index="1" id="tab_1" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="touch(this)" >
 
         <div class="tab_header">
             <p class="title"> I </p>
@@ -58,7 +58,7 @@
         </div>
 
       </div>
-      <div class="tab_full" index="2" id="tab_2" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab_full" index="2" id="tab_2" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="touch(this)" >
 
         <div class="tab_header">
             <p class="title"> R </p>
@@ -72,7 +72,7 @@
         </div>
 
       </div>
-      <div class="tab_full" index="3" id="tab_3" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab_full" index="3" id="tab_3" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="touch(this)" >
 
         <div class="tab_header">
             <p class="title"> C </p>
@@ -86,7 +86,7 @@
         </div>
 
       </div>
-      <div class="tab_full" index="4" id="tab_4" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab_full" index="4" id="tab_4" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="touch(this)" >
 
         <div class="tab_header">
             <p class="title"> U </p>
@@ -100,7 +100,7 @@
         </div>
 
       </div>
-      <div class="tab_full" index="5" id="tab_5" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="on(this)" ontouchend="off(this)">
+      <div class="tab_full" index="5" id="tab_5" data-scroll-section onmouseleave="off(this)" onmouseenter="on(this)" ontouchstart="touch(this)" >
 
         <div class="tab_header">
             <p class="title"> S </p>
@@ -150,6 +150,22 @@
         scaleUp(object.id);
       }
 
+      function touch(object){
+
+        if (tab_status == false) {
+
+          // tab is closed, open
+          scaleUp(object.id);
+          tab_status = true;
+          object.classList.add('active');
+        }else{
+          scaleDown(object.id);
+          tab_status = false;
+          object.classList.remove('active');
+        }
+
+      }
+
 
 
 
@@ -178,8 +194,9 @@
           width: 100,
           transformOrigin:"50% 50%"
         });
-
       }
+
+
 
       function scaleDown(target){
         specs = document.getElementById(target).getBoundingClientRect();

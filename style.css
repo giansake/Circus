@@ -197,6 +197,7 @@ html {
 .tab_image{
   /* position: absolute;
   z-index: -9 */
+  height: 100%;
 }
 
 
