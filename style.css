@@ -11,7 +11,8 @@ body{
 #splash-wrapper-review{
   padding:0;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
+    height: -webkit-fill-available;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,7 +22,8 @@ body{
 }
 #splash-wrapper{
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
+    height: -webkit-fill-available;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -31,7 +33,8 @@ body{
 }
 #splash-wrapper-2{
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
+    height: -webkit-fill-available;
 
     display: flex;
     /* display: inline-grid;
