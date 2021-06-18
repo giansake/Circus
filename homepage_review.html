@@ -34,7 +34,10 @@
         <div class="tab_header">
             <p class="title"> C </p>
         </div>
-        <img class="tab_image" src="./img/S.jpg" alt="">
+        <div class="tab_image_wrapper">
+          <img class="tab_image" src="./img/1.png" alt="">
+        </div>
+
         <div class="tab_footer">
           <p class="tab_footer_text">Production</p>
         </div>
@@ -46,9 +49,12 @@
         <div class="tab_header">
             <p class="title"> I </p>
         </div>
-        <img class="tab_image" src="./img/S.jpg" alt="">
+        <div class="tab_image_wrapper">
+          <img class="tab_image" src="./img/2.png" alt="">
+        </div>
+
         <div class="tab_footer">
-          <p class="tab_footer_text">Production</p>
+          <p class="tab_footer_text">Studios</p>
         </div>
 
       </div>
@@ -57,9 +63,12 @@
         <div class="tab_header">
             <p class="title"> R </p>
         </div>
-        <img class="tab_image" src="./img/S.jpg" alt="">
+        <div class="tab_image_wrapper">
+          <img class="tab_image" src="./img/S.jpg" alt="">
+        </div>
+
         <div class="tab_footer">
-          <p class="tab_footer_text">Production</p>
+          <p class="tab_footer_text">Works</p>
         </div>
 
       </div>
@@ -68,9 +77,12 @@
         <div class="tab_header">
             <p class="title"> C </p>
         </div>
-        <img class="tab_image" src="./img/S.jpg" alt="">
+        <div class="tab_image_wrapper">
+          <img class="tab_image" src="./img/S.jpg" alt="">
+        </div>
+
         <div class="tab_footer">
-          <p class="tab_footer_text">Production</p>
+          <p class="tab_footer_text">Catalogue</p>
         </div>
 
       </div>
@@ -79,9 +91,12 @@
         <div class="tab_header">
             <p class="title"> U </p>
         </div>
-        <img class="tab_image" src="./img/S.jpg" alt="">
+        <div class="tab_image_wrapper">
+          <img class="tab_image" src="./img/5.png" alt="">
+        </div>
+
         <div class="tab_footer">
-          <p class="tab_footer_text">Production</p>
+          <p class="tab_footer_text">Departments</p>
         </div>
 
       </div>
@@ -90,9 +105,12 @@
         <div class="tab_header">
             <p class="title"> S </p>
         </div>
-        <img class="tab_image" src="./img/S.jpg" alt="">
+        <div class="tab_image_wrapper">
+          <img class="tab_image" src="./img/6.png" alt="">
+        </div>
+
         <div class="tab_footer">
-          <p class="tab_footer_text">Production</p>
+          <p class="tab_footer_text">About</p>
         </div>
 
       </div>
@@ -100,30 +118,24 @@
 
 
 
+
     <script type="text/javascript">
 
 
 
-$(document).ready(function () {
-      // $('body').flowtype({
-      //   minFont : 12,
-      //   maxFont : 40,
-      //   minimum : 500,
-      //   maximum : 1200
-      // });
+      $(document).ready(function () {
+        $('p.tab_footer_text').flowtype({
+          minFont : 50,
+          maxFont : 60,
+          minimum : 500,
+          maximum : 1200
+        });
 
-      $('p.tab_footer_text').flowtype({
-        minFont : 50,
-        maxFont : 60,
-        minimum : 500,
-        maximum : 1200
-      });
-
-      $('.title').flowtype({
-        minFont : 100,
-        maxFont : 180,
-      });
-    })
+        $('.title').flowtype({
+          minFont : 100,
+          maxFont : 180,
+        });
+      })
 
 
       var tab_status = false;
